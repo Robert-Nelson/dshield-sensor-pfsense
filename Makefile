@@ -8,6 +8,8 @@ CATEGORIES=	net-mgmt
 MAINTAINER=	robertn@the-nelsons.org
 COMMENT=	Submit firewall logs to Dshield Sensor periodically
 
+RUN_DEPENDS=	p5-Net-IP:${PORTSDIR}/net-mgmt/p5-Net-IP
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	Robert-Nelson
 GH_PROJECT=	dshield-framework
@@ -19,8 +21,6 @@ USES=		perl5
 USE_PERL5=	build run
 USE_PHP=	yes
 WANT_PHP_CLI=	yes
-
-RUN_DEPENDS=	p5-Net-IP:${PORTSDIR}/net-mgmt/p5-Net-IP
 
 .include <bsd.port.pre.mk>
 

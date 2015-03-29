@@ -1,10 +1,9 @@
+sbin/dshield-sensor
+libexec/dshield-sensor/pfsense.pl
+libexec/dshield-sensor/pfsense_mailer.php
+libexec/dshield-sensor/pfsense_preprocessor.php
 @sample etc/dshield-sensor/dshield-source-exclude.lst.sample
 @sample etc/dshield-sensor/dshield-source-port-exclude.lst.sample
 @sample etc/dshield-sensor/dshield-target-exclude.lst.sample
 @sample etc/dshield-sensor/dshield-target-port-exclude.lst.sample
 @sample etc/dshield-sensor/dshield.cnf.sample
-sbin/dshield-sensor
-libexec/dshield-sensor/pfsense.pl
-libexec/dshield-sensor/pfsense_mailer.php
-libexec/dshield-sensor/pfsense_preprocessor.php
-

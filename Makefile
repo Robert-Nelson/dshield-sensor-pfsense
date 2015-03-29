@@ -22,6 +22,8 @@ USE_PERL5=	build run
 USE_PHP=	yes
 WANT_PHP_CLI=	yes
 
+NO_ARCH=	yes
+
 .include <bsd.port.pre.mk>
 
 post-extract:

@@ -15,7 +15,7 @@
  
 -sendmail=/usr/sbin/sendmail -oi -t
 +#sendmail=/usr/sbin/sendmail -oi -t
-+sendmail=/usr/local/share/dshield-sensor/pfsense_mailer.php
++sendmail=@@DATADIR@@/pfsense_mailer.php
  
  # What to do with the output.
  # If defined as 'MAIL' then send the converted # log to the addresses defined 
@@ -34,15 +34,15 @@
  # IP addresses
 -source_exclude=/etc/dshield-source-exclude.lst
 -target_exclude=/etc/dshield-target-exclude.lst
-+source_exclude=/usr/local/etc/dshield-source-exclude.lst
-+target_exclude=/usr/local/etc/dshield-target-exclude.lst
++source_exclude=@@ETCDIR@@/dshield-source-exclude.lst
++target_exclude=@@ETCDIR@@/dshield-target-exclude.lst
  
  #
  # Ports
 -source_port_exclude=/etc/dshield-source-port-exclude.lst
 -target_port_exclude=/etc/dshield-target-port-exclude.lst
-+source_port_exclude=/usr/local/etc/dshield-source-port-exclude.lst
-+target_port_exclude=/usr/local/etc/dshield-target-port-exclude.lst
++source_port_exclude=@@ETCDIR@@/dshield-source-port-exclude.lst
++target_port_exclude=@@ETCDIR@@/dshield-target-port-exclude.lst
  
  # Replace the first byte of the target IP with '10.'
  # Note that if you set this to 'Y' then DShield won't send FightBack

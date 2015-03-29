@@ -1,7 +1,7 @@
 # Created by: Robert Nelson <robertn@the-nelsons.org>
 # $FreeBSD$
 
-PORTNAME=	dshield-sensor-pfsense
+PORTNAME=	dshield-sensor
 PORTVERSION=	2015.03.29
 CATEGORIES=	net-mgmt
 
@@ -16,7 +16,8 @@ GH_PROJECT=	dshield-framework
 
 DISTVERSIONPREFIX=	v
 
-USES=		perl5
+USES=		perl5 shebangfix
+SHEBANG_FILES=	${WRKSRC}/build_clients.pl
 
 USE_PERL5=	build run
 USE_PHP=	yes
@@ -27,13 +28,26 @@ NO_ARCH=	yes
 .include <bsd.port.pre.mk>
 
 post-extract:
-	${CP} ${FILESDIR}/Makefile ${WRKSRC}
-	@${REINPLACE_CMD} -e 's,/usr/bin/perl,/usr/local/bin/perl,' ${WRKSRC}/build_clients.pl
+	${CP} ${FILESDIR}/dshield-sensor ${WRKSRC}
 
-post-build:
-	@${REINPLACE_CMD} -e 's,/usr/bin/perl,/usr/local/bin/perl,' ${WRKSRC}/pfsense.pl
+post-patch:
+	@${REINPLACE_CMD} -e 's,@@PREFIX@@,${PREFIX},g' -e 's,@@DATADIR@@,${DATADIR},g' -e 's,@@ETCDIR@@,${ETCDIR},g' ${WRKSRC}/dshield-sensor ${WRKSRC}/dshield.cnf
 
-post-install:
-	${INSTALL_SCRIPT} ${FILESDIR}/dshield-sensor ${STAGEDIR}${PREFIX}/sbin/dshield-sensor
+do-build:
+	cd ${WRKSRC}; ./build_clients.pl
+	@${REINPLACE_CMD} ${_SHEBANG_REINPLACE_ARGS} ${WRKSRC}/pfsense.pl
+
+do-install:
+	${MKDIR} ${STAGEDIR}${DATADIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/pfsense.pl ${STAGEDIR}${DATADIR}/pfsense.pl
+	${INSTALL_SCRIPT} ${WRKSRC}/pfsense_mailer.php ${STAGEDIR}${DATADIR}/pfsense_mailer.php
+	${INSTALL_SCRIPT} ${WRKSRC}/pfsense_preprocessor.php ${STAGEDIR}${DATADIR}/pfsense_preprocessor.php
+	${MKDIR} ${STAGEDIR}${ETCDIR}
+	${INSTALL_DATA} ${WRKSRC}/dshield-source-exclude.lst ${STAGEDIR}${ETCDIR}/dshield-source-exclude.lst.sample
+	${INSTALL_DATA} ${WRKSRC}/dshield-source-port-exclude.lst ${STAGEDIR}${ETCDIR}/dshield-source-port-exclude.lst.sample
+	${INSTALL_DATA} ${WRKSRC}/dshield-target-exclude.lst ${STAGEDIR}${ETCDIR}/dshield-target-exclude.lst.sample
+	${INSTALL_DATA} ${WRKSRC}/dshield-target-port-exclude.lst ${STAGEDIR}${ETCDIR}/dshield-target-port-exclude.lst.sample
+	${INSTALL_DATA} ${WRKSRC}/dshield-target-port-exclude.lst ${STAGEDIR}${ETCDIR}/dshield.cnf.sample
+	${INSTALL_SCRIPT} ${WRKSRC}/dshield-sensor ${STAGEDIR}${PREFIX}/sbin/dshield-sensor
 
 .include <bsd.port.post.mk>

@@ -1,0 +1,2 @@
+#!/bin/sh
+/usr/local/sbin/clog /var/log/filter.log | /usr/local/libexec/dshield-sensor/pfsense_preprocessor.php | /usr/local/libexec/dshield-sensor/pfsense.pl -config=/usr/local/etc/dshield-sensor/dshield.cnf

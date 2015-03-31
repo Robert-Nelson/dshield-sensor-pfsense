@@ -9,23 +9,13 @@
  
  # Regular expression that must match in each log line that is processed
  # Needed if your log contains all kinds of different things, not just
-@@ -64,7 +64,8 @@ log=/var/log/messages
- # What program (and options) to use for sending mail
- # (When 'whereto=MAIL')
- 
--sendmail=/usr/sbin/sendmail -oi -t
-+#sendmail=/usr/sbin/sendmail -oi -t
-+sendmail=@@DATADIR@@/pfsense_mailer.php
- 
- # What to do with the output.
- # If defined as 'MAIL' then send the converted # log to the addresses defined 
-@@ -79,20 +80,21 @@ sendmail=/usr/sbin/sendmail -oi -t
+@@ -79,20 +79,21 @@ sendmail=/usr/sbin/sendmail -oi -t
  # Or for testing and debugging, so that you don't have to fool with mail until
  # you have it working right.
  
 -whereto=MAIL
 +#whereto=MAIL
-+whereto=MAILWRAPPER
++whereto=-
  
  # These optional files contain ranges that are used to exclude 
  # log lines, so you can filter out log lines that you don't want
@@ -46,7 +36,7 @@
  
  # Replace the first byte of the target IP with '10.'
  # Note that if you set this to 'Y' then DShield won't send FightBack
-@@ -112,7 +114,7 @@ obfus=N
+@@ -112,7 +113,7 @@ obfus=N
  # yyyymmddhhmmss format, so you can manually edit this if you need to
  # reset where processing will start.
  

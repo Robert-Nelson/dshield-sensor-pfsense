@@ -1,2 +1,2 @@
 #!/bin/sh
-@@PREFIX@@/sbin/clog /var/log/filter.log | @@DATADIR@@/pfsense_preprocessor.php | @@DATADIR@@/pfsense.pl -config=@@ETCDIR@@/dshield.cnf
+@@DATADIR@@/pfsense.pl -config=@@ETCDIR@@/dshield.cnf

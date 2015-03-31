@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	dshield-sensor
-PORTVERSION=	2015.03.29
+PORTVERSION=	2015.03.31
 CATEGORIES=	net-mgmt
 
 MAINTAINER=	robertn@the-nelsons.org
@@ -20,8 +20,6 @@ USES=		perl5 shebangfix
 SHEBANG_FILES=	${WRKSRC}/build_clients.pl
 
 USE_PERL5=	build run
-USE_PHP=	yes
-WANT_PHP_CLI=	yes
 
 NO_ARCH=	yes
 
@@ -31,7 +29,7 @@ post-extract:
 	${CP} ${FILESDIR}/dshield-sensor ${WRKSRC}
 
 post-patch:
-	@${REINPLACE_CMD} -e 's,@@PREFIX@@,${PREFIX},g' -e 's,@@DATADIR@@,${DATADIR},g' -e 's,@@ETCDIR@@,${ETCDIR},g' ${WRKSRC}/dshield-sensor ${WRKSRC}/dshield.cnf
+	@${REINPLACE_CMD} -e 's,@@DATADIR@@,${DATADIR},g' -e 's,@@ETCDIR@@,${ETCDIR},g' ${WRKSRC}/dshield-sensor ${WRKSRC}/dshield.cnf
 
 do-build:
 	cd ${WRKSRC}; ./build_clients.pl
@@ -40,8 +38,6 @@ do-build:
 do-install:
 	${MKDIR} ${STAGEDIR}${DATADIR}
 	${INSTALL_SCRIPT} ${WRKSRC}/pfsense.pl ${STAGEDIR}${DATADIR}/pfsense.pl
-	${INSTALL_SCRIPT} ${WRKSRC}/pfsense_mailer.php ${STAGEDIR}${DATADIR}/pfsense_mailer.php
-	${INSTALL_SCRIPT} ${WRKSRC}/pfsense_preprocessor.php ${STAGEDIR}${DATADIR}/pfsense_preprocessor.php
 	${MKDIR} ${STAGEDIR}${ETCDIR}
 	${INSTALL_DATA} ${WRKSRC}/dshield-source-exclude.lst ${STAGEDIR}${ETCDIR}/dshield-source-exclude.lst.sample
 	${INSTALL_DATA} ${WRKSRC}/dshield-source-port-exclude.lst ${STAGEDIR}${ETCDIR}/dshield-source-port-exclude.lst.sample

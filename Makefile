@@ -47,7 +47,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/dshield-source-port-exclude.lst ${STAGEDIR}${ETCDIR}/dshield-source-port-exclude.lst.sample
 	${INSTALL_DATA} ${WRKSRC}/dshield-target-exclude.lst ${STAGEDIR}${ETCDIR}/dshield-target-exclude.lst.sample
 	${INSTALL_DATA} ${WRKSRC}/dshield-target-port-exclude.lst ${STAGEDIR}${ETCDIR}/dshield-target-port-exclude.lst.sample
-	${INSTALL_DATA} ${WRKSRC}/dshield-target-port-exclude.lst ${STAGEDIR}${ETCDIR}/dshield.cnf.sample
+	${INSTALL_DATA} ${WRKSRC}/dshield.cnf ${STAGEDIR}${ETCDIR}/dshield.cnf.sample
 	${INSTALL_SCRIPT} ${WRKSRC}/dshield-sensor ${STAGEDIR}${PREFIX}/sbin/dshield-sensor
 
 .include <bsd.port.post.mk>

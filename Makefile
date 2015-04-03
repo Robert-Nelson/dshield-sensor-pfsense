@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	dshield-sensor
-PORTVERSION=	2015.03.31
+PORTVERSION=	2015.04.03
 CATEGORIES=	net-mgmt
 
 MAINTAINER=	robertn@the-nelsons.org

@@ -8,7 +8,7 @@ CATEGORIES=	net-mgmt
 MAINTAINER=	robertn@the-nelsons.org
 COMMENT=	Submit firewall logs to Dshield Sensor periodically
 
-RUN_DEPENDS=	p5-Net-IP:${PORTSDIR}/net-mgmt/p5-Net-IP
+RUN_DEPENDS=	p5-Net-IP>=0:${PORTSDIR}/net-mgmt/p5-Net-IP
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	Robert-Nelson

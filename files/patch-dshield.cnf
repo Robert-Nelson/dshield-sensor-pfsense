@@ -36,12 +36,3 @@
  
  # Replace the first byte of the target IP with '10.'
  # Note that if you set this to 'Y' then DShield won't send FightBack
-@@ -112,7 +113,7 @@ obfus=N
- # yyyymmddhhmmss format, so you can manually edit this if you need to
- # reset where processing will start.
- 
--linecnt=/tmp/dshield.cnt
-+linecnt=/var/tmp/dshield.cnt
- 
- # Setting these to "Y" makes the client spit out a lot of stuff
- # to standard output, some of which may be helpful.
